@@ -15,7 +15,6 @@
 
 package org.springframework.cloud.stream.app.trigger;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
 import javax.validation.ValidationException;
@@ -30,7 +29,6 @@ import java.util.concurrent.TimeUnit;
  * @author David Turanski
  * @author Ilayaperumal Gopinathan
  */
-@ConfigurationProperties
 public class TriggerProperties {
 
 	/**

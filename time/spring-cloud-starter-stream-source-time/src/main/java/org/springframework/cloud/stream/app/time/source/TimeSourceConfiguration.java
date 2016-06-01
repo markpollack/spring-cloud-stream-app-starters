@@ -17,11 +17,14 @@
 package org.springframework.cloud.stream.app.time.source;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.app.annotation.PollableSource;
+import org.springframework.cloud.stream.app.trigger.MaxMessagesProperties;
 import org.springframework.cloud.stream.app.trigger.TriggerConfiguration;
 import org.springframework.cloud.stream.app.trigger.TriggerProperties;
 import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 import java.util.Date;
@@ -31,16 +34,32 @@ import java.util.Date;
  * @author Glenn Renfro
  * @author Marius Bogoevici
  */
+@EnableConfigurationProperties
 @EnableBinding(Source.class)
 @Import(TriggerConfiguration.class)
 public class TimeSourceConfiguration {
 
 	@Autowired
-	private TriggerProperties properties;
+	private TimeSourceProperties timeSourceProperties;
+
+	@Bean
+	public TimeSourceProperties TimeSourceProperties() {
+		return new TimeSourceProperties();
+	}
+
+	@Bean
+	public TriggerProperties triggerProperties(TimeSourceProperties timeSourceProperties) {
+		return timeSourceProperties.getTrigger();
+	}
+
+	@Bean
+	public MaxMessagesProperties maxMessagesProperties(TimeSourceProperties timeSourceProperties) {
+		return timeSourceProperties.getMaxMessages();
+	}
 
 	@PollableSource
 	public String publishTime() {
-		return this.properties.getDateFormat().format(new Date());
+		return this.timeSourceProperties.getTrigger().getDateFormat().format(new Date());
 	}
 
 }

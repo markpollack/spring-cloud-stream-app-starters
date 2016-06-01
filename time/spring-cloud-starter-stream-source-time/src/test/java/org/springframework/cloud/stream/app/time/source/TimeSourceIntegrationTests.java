@@ -29,6 +29,7 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.cloud.stream.annotation.Bindings;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -46,6 +47,9 @@ public abstract class TimeSourceIntegrationTests {
 	protected Source timeSource;
 
 	@Autowired
+	private ApplicationContext applicationContext;
+
+	@Autowired
 	protected MessageCollector messageCollector;
 
 	public static class DefaultPropertiesTests extends TimeSourceIntegrationTests {
@@ -56,7 +60,7 @@ public abstract class TimeSourceIntegrationTests {
 		}
 	}
 
-	@IntegrationTest({ "timeUnit=MILLISECONDS" })
+	@IntegrationTest({ "timesource.trigger.timeUnit=MILLISECONDS" })
 	public static class TimeUnitPropertiesTests extends TimeSourceIntegrationTests {
 		@Test
 		public void test() throws InterruptedException {

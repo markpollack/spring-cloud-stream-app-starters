@@ -17,33 +17,28 @@
 package org.springframework.cloud.stream.app.time.source;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.cloud.stream.app.time.DateFormat;
+import org.springframework.cloud.stream.app.trigger.MaxMessagesProperties;
+import org.springframework.cloud.stream.app.trigger.TriggerProperties;
 
-/**
- * Describes properties of the {@code time} source app.
- *
- * @author Eric Bottard
- * @author Gary Russell
- * @author David Turanski
- *
- * @deprecated in favor of {@link org.springframework.cloud.stream.time.app.common.trigger.TriggerProperties#dateFormat}
- */
-@Deprecated
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "timesource")
 public class TimeSourceProperties {
 
-	/**
-	 * 	how to render the current time, using SimpleDateFormat
-	 */
-	private String format = "yyyy-MM-dd HH:mm:ss";
 
-	@DateFormat
-	public String getFormat() {
-		return this.format;
+	@NestedConfigurationProperty
+	private TriggerProperties trigger = new TriggerProperties();
+
+	@NestedConfigurationProperty
+	private MaxMessagesProperties maxMessages = new MaxMessagesProperties();
+
+
+	public TriggerProperties getTrigger() {
+		return trigger;
 	}
 
-	public void setFormat(String format) {
-		this.format = format;
+	public MaxMessagesProperties getMaxMessages() {
+		return maxMessages;
 	}
 
 }

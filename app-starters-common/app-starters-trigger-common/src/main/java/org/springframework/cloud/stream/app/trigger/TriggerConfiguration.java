@@ -35,7 +35,6 @@ import org.springframework.scheduling.support.PeriodicTrigger;
  * @author Artem Bilan
  */
 @Configuration
-@EnableConfigurationProperties({ TriggerProperties.class, MaxMessagesProperties.class })
 @Import(SpelExpressionConverterConfiguration.class)
 public class TriggerConfiguration {
 
