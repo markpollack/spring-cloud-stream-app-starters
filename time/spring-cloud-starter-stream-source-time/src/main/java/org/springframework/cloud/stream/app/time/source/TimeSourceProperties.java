@@ -22,7 +22,7 @@ import org.springframework.cloud.stream.app.time.DateFormat;
 import org.springframework.cloud.stream.app.trigger.MaxMessagesProperties;
 import org.springframework.cloud.stream.app.trigger.TriggerProperties;
 
-@ConfigurationProperties(prefix = "timesource")
+@ConfigurationProperties(prefix = "spring.cloud.stream.app")
 public class TimeSourceProperties {
 
 
