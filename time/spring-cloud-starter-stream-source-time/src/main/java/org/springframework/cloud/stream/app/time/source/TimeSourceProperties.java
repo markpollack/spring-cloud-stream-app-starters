@@ -26,24 +26,11 @@ import org.springframework.cloud.stream.app.time.DateFormat;
  * @author Gary Russell
  * @author David Turanski
  *
- * @deprecated in favor of {@link org.springframework.cloud.stream.time.app.common.trigger.TriggerProperties#dateFormat}
  */
-@Deprecated
-@ConfigurationProperties
+@ConfigurationProperties("time")
 public class TimeSourceProperties {
 
-	/**
-	 * 	how to render the current time, using SimpleDateFormat
-	 */
-	private String format = "yyyy-MM-dd HH:mm:ss";
 
-	@DateFormat
-	public String getFormat() {
-		return this.format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
-	}
+	// There are currently properties specific to the time source.
 
 }

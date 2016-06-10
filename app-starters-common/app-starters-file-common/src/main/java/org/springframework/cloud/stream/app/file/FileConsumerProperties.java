@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @author David Turanski
  */
-@ConfigurationProperties
+@ConfigurationProperties("file.consumer")
 public class FileConsumerProperties {
 
 	/**

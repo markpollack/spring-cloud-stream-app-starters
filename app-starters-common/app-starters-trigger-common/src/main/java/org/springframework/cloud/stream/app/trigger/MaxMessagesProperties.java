@@ -20,7 +20,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author David Turanski
  */
-@ConfigurationProperties
+@ConfigurationProperties("poll")
 public class MaxMessagesProperties {
 
 	/**

@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * @author David Turanski
  * @author Ilayaperumal Gopinathan
  */
-@ConfigurationProperties
+@ConfigurationProperties("trigger")
 public class TriggerProperties {
 
 	/**
